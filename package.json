@@ -1,0 +1,27 @@
+{
+  "name": "eventinz-test",
+  "version": "1.0.0",
+  "description": "Demo App to learn about NodeJs for one future project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Degkof ITTIQ",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "express-ejs-layouts": "^2.5.1",
+    "mariadb": "^3.4.0",
+    "sequelize": "^6.37.5",
+    "serve-favicon": "^2.5.0",
+    "startbootstrap-sb-admin-2": "^4.1.4"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.7"
+  }
+}
