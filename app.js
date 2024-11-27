@@ -33,7 +33,7 @@ app.use(favicon(path.join(__dirname, 'favicon.ico')))
    .use(express.urlencoded({ extended: true }))
 
  
-   
+
 // Définition des routes
 app.get('/', (req, res) => res.render('index', { title: 'Accueil' })) // Rendu avec index.ejs
    .get('/admin', (req, res) => res.render('admin', { title: 'Dashboard' })) // Rendu avec admin.ejs

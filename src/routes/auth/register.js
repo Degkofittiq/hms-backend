@@ -2,12 +2,16 @@ const { User } = require('../../db/mongodb');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const privateKey = require('../../auth/private_key');
+const multer = require('multer');
+const upload = multer({ dest: './src/uploads/' }); // Remplacez 'uploads/' par le chemin où les fichiers doivent être stockés.
 
 module.exports = (app) => {
-  app.post('/api/register', async (req, res) => {
+  app.post('/api/register', upload.single('picture'), async (req, res) => {
     try {
       const { name, email, username, picture, type, password } = req.body;
-      console.log(req.body)
+
+      console.log(req.body); // Affichera les champs du formulaire
+      req.file ? console.log(req.file) : " "; // Affichera les informations du fichier
 
       // Vérifier que tous les champs obligatoires sont présents
       if (!name || !email || !username || !type || !password) {
@@ -29,7 +33,7 @@ module.exports = (app) => {
         name,
         email,
         username,
-        picture,
+        picture:  req.file ? req.file.path : null,
         type,
         password, // Le mot de passe sera automatiquement haché grâce au middleware dans le modèle
       });
@@ -43,6 +47,7 @@ module.exports = (app) => {
         privateKey,
         { expiresIn: '24h' }
       );
+
 
       // Retourner une réponse réussie
       const { password: _, ...userWithoutPassword } = newUser._doc; // Exclure le mot de passe de la réponse
